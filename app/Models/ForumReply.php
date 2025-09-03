@@ -86,4 +86,20 @@ class ForumReply extends Model
     {
         return $this->hasMany(ForumReply::class, 'parent_id');
     }
+
+    /**
+     * Boot the model.
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($reply) {
+            // Update parent thread's last activity and reply count
+            $reply->thread()->update([
+                'last_activity_at' => now(),
+                'reply_count' => $reply->thread->replies()->count(),
+            ]);
+        });
+    }
 }

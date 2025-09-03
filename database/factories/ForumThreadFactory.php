@@ -72,4 +72,14 @@ class ForumThreadFactory extends Factory
             'view_count' => fake()->numberBetween(500, 2000),
         ]);
     }
+
+    /**
+     * Associate the thread with a specific user.
+     */
+    public function forUser(User $user): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'user_id' => $user->id,
+        ]);
+    }
 }

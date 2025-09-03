@@ -44,6 +44,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Route management
     Route::resource('routes', ExpeditionRouteController::class)->except(['index', 'show']);
+
+    // Forum management
+    Route::get('/forum/create', [App\Http\Controllers\ForumThreadController::class, 'create'])->name('forum.create');
+    Route::post('/forum', [App\Http\Controllers\ForumThreadController::class, 'store'])->name('forum.store');
+    Route::get('/forum/{category}/{thread}', [App\Http\Controllers\ForumThreadController::class, 'show'])->name('forum.threads.show');
+    Route::post('/forum/{thread}/replies', [App\Http\Controllers\ForumReplyController::class, 'store'])->name('forum.reply.store');
 });
 
 require __DIR__.'/settings.php';

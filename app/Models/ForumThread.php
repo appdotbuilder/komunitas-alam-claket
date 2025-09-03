@@ -93,4 +93,16 @@ class ForumThread extends Model
     {
         return $this->hasMany(ForumReply::class, 'thread_id');
     }
+
+    /**
+     * Boot the model.
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($thread) {
+            $thread->last_activity_at = now();
+        });
+    }
 }

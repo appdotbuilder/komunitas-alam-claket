@@ -48,9 +48,17 @@ export default function ForumIndex({ categories, recentThreads }: Props) {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Header */}
                     <div className="mb-8">
-                        <h1 className="text-4xl font-bold text-green-800 mb-4">
-                            💬 Forum Diskusi
-                        </h1>
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                            <h1 className="text-4xl font-bold text-green-800 mb-4 sm:mb-0">
+                                💬 Forum Diskusi
+                            </h1>
+                            <Link
+                                href={route('forum.create')}
+                                className="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg shadow-lg transition-colors duration-200"
+                            >
+                                ✍️ Buat Thread Baru
+                            </Link>
+                        </div>
                         <p className="text-lg text-gray-600 max-w-3xl">
                             Berbagi pengalaman, tips, dan tanya jawab seputar petualangan alam. 
                             Mari berdiskusi dengan sesama pecinta alam!

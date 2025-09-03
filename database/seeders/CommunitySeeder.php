@@ -149,9 +149,8 @@ class CommunitySeeder extends Seeder
         // Create some forum threads for each category
         $forumCategories = ForumCategory::all();
         foreach ($forumCategories as $category) {
-            ForumThread::factory(random_int(3, 8))->create([
+            ForumThread::factory(random_int(3, 8))->forUser($users->random())->create([
                 'category_id' => $category->id,
-                'user_id' => $users->random()->id,
             ]);
         }
     }
